@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     loadConversations();
 
-    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const API = import.meta.env.VITE_API_URL || "https://whatsapp-web-clone-jxhi.onrender.com/";
     socketRef.current = io(API, { transports: ["websocket", "polling"] });
     const socket = socketRef.current;
 
