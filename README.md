@@ -1,12 +1,41 @@
-# React + Vite
+📌 Frontend Overview
+The frontend is a WhatsApp Web Clone built with React.js that replicates the familiar WhatsApp Web chat interface.
+It is designed for real-time messaging using Socket.IO and fetches chat history from the backend API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Features
+Sidebar Chat List: Displays all active conversations with:
 
-Currently, two official plugins are available:
+Contact number / name
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Last message preview
 
-## Expanding the ESLint configuration
+Timestamp of the last message
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Unread message count (green bubble)
+
+Search Bar: Allows searching for contacts or starting a new chat.
+
+## Chat Window:
+
+Shows the selected contact’s name/number and status (e.g., "Online").
+
+Displays full conversation history in a scrollable view.
+
+Messages are styled differently for sent (green bubble) and received (white bubble).
+
+Each message includes a timestamp and status ticks (✓✓ for read, ✓ for sent).
+
+<img width="1366" height="605" alt="image" src="https://github.com/user-attachments/assets/61592973-0635-4c65-9254-0b47eff7a979" />
+
+Message Input Box:
+
+Type and send new messages instantly.
+
+Messages are updated in real-time without page refresh.
+
+🖼 UI Layout
+Left Sidebar: Conversation list with search input at the top.
+
+Right Panel: Active chat with messages aligned left (received) or right (sent).
+
+Bottom Input Area: Text input and send button for quick messaging.
