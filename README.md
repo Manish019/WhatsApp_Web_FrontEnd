@@ -47,10 +47,9 @@ Frontend: https://whats-app-web-front-end.vercel.app/
 1. Frontend Setup (React + Vite)
 Open a new terminal window and go into the frontend folder:
 
-## cd frontend
-## Install dependencies:
-# npm install
-# npm run dev
+* Install dependencies:
+* npm install
+* npm run dev
 
 2. Open in Browser
 Visit http://localhost:5173 for the frontend.
