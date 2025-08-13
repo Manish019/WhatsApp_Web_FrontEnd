@@ -12,40 +12,34 @@ export default function App() {
 
   useEffect(() => {
     loadConversations();
-    const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
-   // const API = import.meta.env.VITE_API_URL || "https://whatsapp-web-clone-jxhi.onrender.com";
+    //const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+    const API = import.meta.env.VITE_API_URL || "https://whatsapp-web-clone-jxhi.onrender.com";
     socketRef.current = io(API, { transports: ["websocket", "polling"] });
     const socket = socketRef.current;
 
     // New message from backend
     const handleNewMessage = (msg) => {
       setConversations((prev) => {
-        // Prevent duplicate conversations
         let copy = [...prev];
         const idx = copy.findIndex((c) => c.wa_id === msg.wa_id);
 
         if (idx === -1) {
-          // New conversation
           copy.unshift({
             wa_id: msg.wa_id,
             lastMessage: msg,
             count: msg.wa_id === selected ? 0 : 1,
           });
         } else {
-          // Update existing conversation
           const isCurrentChat = msg.wa_id === selected;
           copy[idx] = {
             ...copy[idx],
             lastMessage: msg,
             count: isCurrentChat ? 0 : (copy[idx].count || 0) + 1,
           };
-          // Move updated conversation to top
           const updatedConv = copy.splice(idx, 1)[0];
           copy.unshift(updatedConv);
         }
 
-        // Remove any accidental duplicates
         const seen = new Set();
         return copy.filter((c) => {
           if (seen.has(c.wa_id)) return false;
@@ -55,7 +49,6 @@ export default function App() {
       });
     };
 
-    // Status update
     const handleStatusUpdate = (st) => {
       window.dispatchEvent(new CustomEvent("wc_status_update", { detail: st }));
     };
@@ -74,7 +67,6 @@ export default function App() {
     };
   }, [selected]);
 
-  // Fetch conversations from DB
   async function loadConversations() {
     try {
       const data = await fetchConversations();
@@ -87,8 +79,7 @@ export default function App() {
     }
   }
 
-  // When selecting a conversation, reset unread count
-    const handleSelect = (wa_id) => {
+  const handleSelect = (wa_id) => {
     setSelected(wa_id);
     setConversations((prev) =>
       prev.map((c) => (c.wa_id === wa_id ? { ...c, count: 0 } : c))
@@ -96,13 +87,18 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen flex">
+    <div className="h-screen flex overflow-hidden">
+      {/* Sidebar */}
       <Sidebar
         conversations={conversations}
         selected={selected}
         onSelect={handleSelect}
       />
-      <ChatWindow wa_id={selected} socket={socketRef.current} />
+
+      {/* Chat Window */}
+      <div className="flex-1 flex flex-col bg-[#efeae2] min-h-0">
+        <ChatWindow wa_id={selected} socket={socketRef.current} />
+      </div>
     </div>
   );
 }
