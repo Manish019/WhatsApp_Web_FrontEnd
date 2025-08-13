@@ -9,20 +9,22 @@ export default function MessageBubble({ message }) {
   });
 
   return (
-    <div className={`flex ${isSent ? "justify-end" : "justify-start"} mb-1`}>
+    <div
+      className={`flex ${isSent ? "justify-end" : "justify-start"} mb-1 px-1 sm:px-0`}
+    >
       <div
-        className={`max-w-md px-3 py-2 rounded-lg shadow text-sm relative ${
+        className={`max-w-[85%] sm:max-w-md px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-lg shadow text-xs sm:text-sm relative ${
           isSent
             ? "bg-green-500 text-white rounded-br-none"
             : "bg-white text-gray-800 rounded-bl-none"
         }`}
       >
-        {/* Message Text props pass*/}
+        {/* Message Text */}
         <div className="whitespace-pre-wrap break-words">{message.text || "No text"}</div>
 
-        {/* Time and  Status */}
+        {/* Time + Status */}
         <div
-          className={`flex items-center gap-1 text-xs mt-1 ${
+          className={`flex items-center gap-1 mt-1 text-[10px] sm:text-xs ${
             isSent ? "text-green-100" : "text-gray-500"
           }`}
         >
