@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { fetchMessages, sendMessage } from "../Api";
-import { FiArrowLeft } from "react-icons/fi";
+
+
+
+
 
 export default function ChatWindow({ wa_id, socket, onBack }) {
   const [messages, setMessages] = useState([]);
@@ -112,15 +115,10 @@ export default function ChatWindow({ wa_id, socket, onBack }) {
   }
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-[#efeae2]">
+    <div className="flex-1 flex flex-col h-full min-h-0 bg-[#efeae2]">
       {/* Header */}
       <div className="p-3 bg-gray-100 border-b flex items-center shadow-sm">
-        <button
-          onClick={onBack}
-          className="md:hidden mr-3 text-gray-600 hover:text-black"
-        >
-          <FiArrowLeft size={22} />
-        </button>
+       
         <div className="w-10 h-10 bg-gray-400 rounded-full"></div>
         <div className="ml-3">
           <div className="font-semibold">{wa_id}</div>
@@ -129,7 +127,7 @@ export default function ChatWindow({ wa_id, socket, onBack }) {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-2">
+        <div className="flex-1 overflow-y-auto p-4 space-y-2 min-h-0 will-change-transform">
         {messages.map((m, index) => {
           const isMe = m.from === "me";
           return (
